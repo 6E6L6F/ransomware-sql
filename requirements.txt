@@ -1,0 +1,3 @@
+pycrypto
+mysql-connector-python
+colorama
