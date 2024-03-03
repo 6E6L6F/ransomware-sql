@@ -8,4 +8,4 @@
 ###
 
 ## running
-    python3 main.py server username password key
+    python3 main.py encrypt server username password key
